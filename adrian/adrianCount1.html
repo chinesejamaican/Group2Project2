@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="timer">
+      <h3>Stop Watch</h3>
+
+      <p><span id="min">0</span>:<span id="sec">00</span></p>
+      <p>
+        <button id="set">Set</button>
+        <button id="start">Count Down</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+      </p>
+    </div>
+    <script>
+      var counter, inputMin;
+
+      (time = inputMin * 60),
+        (sec = document.getElementById("sec")),
+        (min = document.getElementById("min")),
+        (set = document.getElementById("set")),
+        (start = document.getElementById("start")),
+        (reset = document.getElementById("reset")),
+        (stop = document.getElementById("stop"));
+
+      set.addEventListener("click", function() {
+        inputMin = prompt("Enter Number of Minutes Between 1 - 30");
+      });
+
+      start.addEventListener("click", function() {
+        counter = setInterval(count, 1000);
+      });
+
+      stop.addEventListener("click", function() {
+        clearInterval(counter);
+      });
+
+      reset.addEventListener("click", function() {
+        time = inputMin * 60;
+        sec.innerHTML = time % 60;
+        min.innerHTML = Math.floor(time / 60);
+      });
+
+      function count() {
+        if (time === 0) {
+          sec.innerHTML = 0;
+          min.innerHTML = 0;
+          clearInterval(counter);
+        } else {
+          time--;
+          sec.innerHTML = time % 60;
+          min.innerHTML = Math.floor(time / 60);
+        }
+        document.getElementById("timer").innerHTML = min + ":" + sec;
+      }
+    </script>
+  </body>
+</html>
